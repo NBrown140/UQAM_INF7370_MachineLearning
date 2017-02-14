@@ -1,3 +1,5 @@
+@machinalis/satimg
+
 This repository includes the support material for the following blog posts:
  
 # Python for geospatial data processing
