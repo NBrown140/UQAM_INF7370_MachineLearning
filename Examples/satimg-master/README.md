@@ -1,4 +1,4 @@
-@machinalis/satimg
+https://github.com/machinalis/satimg
 
 This repository includes the support material for the following blog posts:
  
