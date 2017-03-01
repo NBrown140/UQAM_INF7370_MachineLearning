@@ -53,7 +53,7 @@ def _get_xmax_ymin(grid_sizes_panda, imageId):
     xmax, ymin = grid_sizes_panda[grid_sizes_panda.ImageId == imageId].iloc[0, 1:].astype(float)
     return (xmax, ymin)
 
-       
+
 def _get_polygon_list(wkt_list_pandas, imageId, cType):
     # __author__ = visoft
     # https://www.kaggle.com/visoft/dstl-satellite-imagery-feature-detection/export-pixel-wise-mask

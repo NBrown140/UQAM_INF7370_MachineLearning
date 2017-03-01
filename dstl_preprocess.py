@@ -54,10 +54,20 @@ def read_plot_3band_tif(inDir, raster_path):
     fig1.show()
 
 
+def stretch():
+    '''
+    https://www.kaggle.com/mehmetbercan/dstl-satellite-imagery-feature-detection/display-a-polygon-class-on-16-band-m/run/759322/notebook
+    
+    '''
+    return pass
+    
 
-
-
-def
+def pansharpen():
+    '''
+    https://www.kaggle.com/resolut/dstl-satellite-imagery-feature-detection/panchromatic-sharpening/run/961801/notebook
+    
+    '''
+    return pass
 
 
 

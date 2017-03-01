@@ -73,6 +73,18 @@ is_train = np.nonzero(labeled_pixels)
 training_labels = labeled_pixels[is_train]
 training_samples = bands_data[is_train]
 
+print type(labeled_pixels), labeled_pixels.shape
+print labeled_pixels
+
+print type(is_train)
+print is_train
+
+print type(training_labels), training_labels.shape
+print training_labels
+
+print type(training_samples), training_samples.shape
+print training_samples
+
 classifier = RandomForestClassifier(n_jobs=-1, n_estimators=10)
 classifier.fit(training_samples, training_labels)
 
@@ -80,7 +92,12 @@ n_samples = rows*cols
 flat_pixels = bands_data.reshape((n_samples, n_bands))
 result = classifier.predict(flat_pixels)
 
+print type(flat_pixels), flat_pixels.shape, flat_pixels
+
 classification = result.reshape((rows, cols))
+
+print type(classification), classification.shape, classification
+
 write_geotiff(output_fname, classification, geo_transform, proj)
 
 shapefiles = [os.path.join(validation_data_path, "%s.shp"%c) for c in classes]
