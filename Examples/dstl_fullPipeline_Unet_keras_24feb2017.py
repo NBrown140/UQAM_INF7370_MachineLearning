@@ -1,4 +1,8 @@
 __author__ = "n01z3"
+'''
+NB: copied from https://www.kaggle.com/drn01z3/dstl-satellite-imagery-feature-detection/end-to-end-baseline-with-u-net-keras/comments
+    errors on original lines l46 and 116 are corrected
+'''
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -49,7 +53,7 @@ def _get_xmax_ymin(grid_sizes_panda, imageId):
     xmax, ymin = grid_sizes_panda[grid_sizes_panda.ImageId == imageId].iloc[0, 1:].astype(float)
     return (xmax, ymin)
 
-
+       
 def _get_polygon_list(wkt_list_pandas, imageId, cType):
     # __author__ = visoft
     # https://www.kaggle.com/visoft/dstl-satellite-imagery-feature-detection/export-pixel-wise-mask
@@ -113,7 +117,7 @@ def M(image_id):
 
 
 def stretch_n(bands, lower_percent=5, higher_percent=95):
-    out = np.zeros_like(bands)
+    out = np.zeros_like(bands).astype(np.float32)
     n = bands.shape[2]
     for i in range(n):
         a = 0  # np.min(band)
@@ -143,7 +147,7 @@ def jaccard_coef_int(y_true, y_pred):
     y_pred_pos = K.round(K.clip(y_pred, 0, 1))
 
     intersection = K.sum(y_true * y_pred_pos, axis=[0, -1, -2])
-    sum_ = K.sum(y_true + y_pred, axis=[0, -1, -2])
+    sum_ = K.sum(y_true + y_pred_pos, axis=[0, -1, -2])
     jac = (intersection + smooth) / (sum_ - intersection + smooth)
     return K.mean(jac)
 
