@@ -61,6 +61,12 @@ for i in range(masks.shape[2]):
 print '\nTraining samples:\n',vals, vals.shape
 print 'Training labels:\n',labels, labels.shape, '\n'    
 
+print 'Visualizing 3D scatter of training data with colored labels...'
+dstl_preprocess.scatter3D(vals[0:10000,0],vals[0:10000,1],vals[0:10000,2],labels[0:10000])
+
+
+sys.exit()
+
 '''
 RandomForestClassifier().fit(X,Y)
 

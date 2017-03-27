@@ -3,6 +3,7 @@
 '''
 
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 import numpy as np
 import os, sys
@@ -10,6 +11,8 @@ from osgeo import gdal
 import tifffile as tiff
 from shapely.wkt import loads as wkt_loads
 import cv2
+import colorsys
+from progressbar import ProgressBar
 
 
 
@@ -185,7 +188,40 @@ def pansharpen():
 ##########################################################################################
 ############################## Plotting/Visualization ####################################
 ##########################################################################################
+def get_spaced_colors(N):
+    ''' Taken from kquinn at http://stackoverflow.com/questions/876853/generating-color-ranges-in-python'''
+    HSV_tuples = [(x*1.0/N, 0.5, 0.5) for x in range(N)]
+    RGB_tuples = map(lambda x: colorsys.hsv_to_rgb(*x), HSV_tuples)
+    
+    return RGB_tuples
 
+
+def scatter3D(X,Y,Z,labels):
+    # Label to color
+    print 'get unique labels'
+    unique_labels = np.unique(labels)
+    print 'getting spaced colors'
+    colors = get_spaced_colors(unique_labels.shape[0])
+    print colors
+    color_dict ={}
+    for i in range(0,unique_labels.shape[0]):
+        color_dict[np.unique(labels)[i]] = colors[i]
+    color_labels = []
+    print 'swithching labels to colors'
+    pbar = ProgressBar()
+    for i in pbar(labels):
+        color_labels.append(color_dict[i])
+    # Plot
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(X, Y, Z, c=color_labels, marker='o')
+    ax.set_xlabel('X Label')
+    ax.set_ylabel('Y Label')
+    ax.set_zlabel('Z Label')
+    fig.show()
+
+
+    
 def read_plot_3band_tif(inDir, raster_path):
 
     raster_dataset = gdal.Open(raster_path, gdal.GA_ReadOnly)
@@ -234,7 +270,13 @@ def read_plot_3band_tif(inDir, raster_path):
 
 
 if __name__ == '__main__':
-    inDir = '/Volumes/PORTABLE/SYNC/GIS_Projects/DSTL_challenge/data'
-    raster_path = inDir + '/three_band/6010_0_0.tif'
-    read_plot_3band_tif(inDir, raster_path)
+#     inDir = '/Volumes/PORTABLE/SYNC/GIS_Projects/DSTL_challenge/data'
+#     raster_path = inDir + '/three_band/6010_0_0.tif'
+#     read_plot_3band_tif(inDir, raster_path)
+    
+    x=[1,1,1,2,2,2,3,3,3]
+    y=[1,2,3,1,2,3,1,2,3]
+    z=[2,2,2,2,2,2,2,2,2]
+    lab=['r','r','r','b','b','b','y','y','y']
+    scatter3D(x,y,z,lab)
 
