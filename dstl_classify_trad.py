@@ -65,8 +65,6 @@ print 'Visualizing 3D scatter of training data with colored labels...'
 dstl_preprocess.scatter3D(vals[::100,0],vals[::100,1],vals[::100,2],labels[::100],'foo.pdf')
 
 
-sys.exit()
-
 '''
 RandomForestClassifier().fit(X,Y)
 
@@ -78,7 +76,8 @@ X = [[ b1, b2, b3]
 Y = [id1, id2, id3]  #labels ex. ['roof', 'road','water']
 '''
 print 'Training classifier...'; start_time = time.time()
-classifier = RandomForestClassifier(n_jobs=-1, n_estimators=10)
+#classifier = RandomForestClassifier(n_jobs=-1, n_estimators=10, class_weight='balanced')
+classifier = SVC(class_weight='balanced')
 classifier.fit(vals, labels)
 print 'Done training classifier. Training took {} seconds for {} samples/pixels\n'.format(str(time.time()-start_time), str(labels.shape[0]))
 
