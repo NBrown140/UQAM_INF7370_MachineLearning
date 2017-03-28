@@ -37,7 +37,7 @@ def write_geotiff(fname, data):
 
 
 inDir = "/Volumes/PORTABLE/SYNC/GIS_Projects/DSTL_challenge/data"
-
+inDir = "/media/nbrown14/extra_space/data/DSTL_challenge/data"
 ################################### Training #############################################
 
 imageId = '6120_2_2'
@@ -62,7 +62,7 @@ print '\nTraining samples:\n',vals, vals.shape
 print 'Training labels:\n',labels, labels.shape, '\n'    
 
 print 'Visualizing 3D scatter of training data with colored labels...'
-dstl_preprocess.scatter3D(vals[0:10000,0],vals[0:10000,1],vals[0:10000,2],labels[0:10000])
+dstl_preprocess.scatter3D(vals[::100,0],vals[::100,1],vals[::100,2],labels[::100],'foo.pdf')
 
 
 sys.exit()

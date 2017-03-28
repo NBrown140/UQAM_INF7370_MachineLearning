@@ -3,6 +3,7 @@
 '''
 
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 import numpy as np
@@ -196,7 +197,7 @@ def get_spaced_colors(N):
     return RGB_tuples
 
 
-def scatter3D(X,Y,Z,labels):
+def scatter3D(X,Y,Z,labels,save_name):
     # Label to color
     print 'get unique labels'
     unique_labels = np.unique(labels)
@@ -214,11 +215,17 @@ def scatter3D(X,Y,Z,labels):
     # Plot
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(X, Y, Z, c=color_labels, marker='o')
+    ax.scatter(X, Y, Z, c=color_labels, marker='o', s=1)
     ax.set_xlabel('X Label')
     ax.set_ylabel('Y Label')
     ax.set_zlabel('Z Label')
+    # Add legend
+    recs = []
+    for i in range(0,len(colors)):
+        recs.append(mpatches.Rectangle((0,0),1,1,fc=colors[i]))
+    plt.legend(recs,unique_labels,loc=4)
     fig.show()
+    fig.savefig(save_name)
 
 
     
@@ -270,13 +277,8 @@ def read_plot_3band_tif(inDir, raster_path):
 
 
 if __name__ == '__main__':
-#     inDir = '/Volumes/PORTABLE/SYNC/GIS_Projects/DSTL_challenge/data'
-#     raster_path = inDir + '/three_band/6010_0_0.tif'
-#     read_plot_3band_tif(inDir, raster_path)
-    
-    x=[1,1,1,2,2,2,3,3,3]
-    y=[1,2,3,1,2,3,1,2,3]
-    z=[2,2,2,2,2,2,2,2,2]
-    lab=['r','r','r','b','b','b','y','y','y']
-    scatter3D(x,y,z,lab)
+    inDir = '/Volumes/PORTABLE/SYNC/GIS_Projects/DSTL_challenge/data'
+    raster_path = inDir + '/three_band/6010_0_0.tif'
+    read_plot_3band_tif(inDir, raster_path)
+
 
