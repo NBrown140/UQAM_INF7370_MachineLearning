@@ -167,15 +167,41 @@ def make_masks(inDir, imageId, verbose=False):
 
 
 
-def stretch():
-    '''
-    https://www.kaggle.com/mehmetbercan/dstl-satellite-imagery-feature-detection/display-a-polygon-class-on-16-band-m/run/759322/notebook
+# def stretch(bands, lower_percent=2, higher_percent=98):
+#     '''
+#     https://www.kaggle.com/mehmetbercan/dstl-satellite-imagery-feature-detection/display-a-polygon-class-on-16-band-m/run/759322/notebook
     
-    '''
-    pass
+#     '''
+#     out = np.zeros_like(bands)
+#     for i in range(3):
+#         a = 0 
+#         b = 255 
+#         c = np.percentile(bands[:,:,i], lower_percent)
+#         d = np.percentile(bands[:,:,i], higher_percent)        
+#         t = a + (bands[:,:,i] - c) * (b - a) / (d - c)    
+#         t[t<a] = a
+#         t[t>b] = b
+#         out[:,:,i] =t
+#     return out.astype(np.uint8)
     
 
+def stretch_n(bands, lower_percent=5, higher_percent=95, dtype=np.uint16):
+    '''
+    https://www.kaggle.com/drn01z3/dstl-satellite-imagery-feature-detection/end-to-end-baseline-with-u-net-keras/comments
+    '''
+    out = np.zeros_like(bands).astype(dtype)
+    n = bands.shape[2]
+    for i in range(n):
+        a = np.iinfo(dtype).min   # 0 for float32
+        b = np.iinfo(dtype).max   # 1 for float32
+        c = np.percentile(bands[:, :, i], lower_percent)
+        d = np.percentile(bands[:, :, i], higher_percent)
+        t = a + (bands[:, :, i] - c) * (b - a) / (d - c)
+        t[t < a] = a
+        t[t > b] = b
+        out[:, :, i] = t
 
+    return out.astype(dtype)
 
 
 def pansharpen():
