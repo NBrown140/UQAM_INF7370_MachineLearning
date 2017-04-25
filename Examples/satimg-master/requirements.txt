@@ -1,8 +1,0 @@
-GDAL==2.0.1
-numpy>=1.10,<1.11
-scipy==0.17.0
-scikit-learn==0.17
-docopt==0.6.2
-matplotlib==1.5.1
-jupyter==1.0.0
-
