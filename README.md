@@ -11,4 +11,5 @@ Some train/test polygons are mislabeled. We still get an accuracy around 70%, wh
 The data we used can be dowloaded at: https://www.dropbox.com/s/uklsson5kjv8zjb/data.zip?dl=0
 
 
-![hello](https://github.com/NBrown140/UQAM_INF7370_MachineLearning/blob/master/mlp_16_8_4_aggregate_150dpi.png)
+Here is the result of the multilayer perceptron ([16,8,4]) after pixel aggregation:
+![hello](https:///raw.githubusercontent.com/NBrown140/UQAM_INF7370_MachineLearning/blob/master/mlp_16_8_4_aggregate_150dpi.png)
