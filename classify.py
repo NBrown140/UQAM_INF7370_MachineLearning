@@ -2,11 +2,11 @@
 A simple script to perform SVM, random forest, kNN and multilayer perceptron algorithms on a training
 and test dataset. Training: one geotiff + training shapefiles. Test: one geotiff + test shapefiles.
 
-The script was used in the context of a machine learning class at UWAM in 2017.
+The script was used in the context of a machine learning class at UQAM in 2017.
 
 Histogram stretching doesn't seem to work.
 
-Inspired by: https://github.com/machinalis/satimg
+Modified from: https://github.com/machinalis/satimg
 '''
 
 import numpy as np
