@@ -11,4 +11,4 @@ Some train/test polygons are mislabeled. We still get an accuracy around 70%, wh
 The data we used can be dowloaded at: https://www.dropbox.com/s/uklsson5kjv8zjb/data.zip?dl=0
 
 
-![alt text](https://www.dropbox.com/s/0dzdhyb8jl7kump/mlp_16_8_4_aggregate_150dpi.png)
+![hello](https://www.dropbox.com/s/0dzdhyb8jl7kump/mlp_16_8_4_aggregate_150dpi.png)
