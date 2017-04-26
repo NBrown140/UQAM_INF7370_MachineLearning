@@ -2,7 +2,7 @@
 
 Repository used for a machine learning class project.
 
-The goal was to experiment with pixel-wise classification of buildings vs non-buildings in aerial imagery (30 cm resolution) from Open Street Map (OSM) training and test data.
+The goal was to experiment with pixel-wise classification of buildings vs non-buildings in aerial imagery (30 cm resolution) from Open Street Map (OSM) training and test data. A lot of the code was modified from https://github.com/machinalis/satimg.
 
 The script can take one training and one test geotiff image. Then use respective 'building' and 'non-building' training/test polygons (shp) to create numpy arrays that can be used by scikit-learn machine learning classifiers kNN, random forest, svm and multilayer perceptron. It is also possible to stretch histograms (not working), create a 3D scatter of the training data and aggregate the pixels of an image after it was predicted by a classifier to get better results.
 
