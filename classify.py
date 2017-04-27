@@ -173,8 +173,8 @@ CLASSIFIERS = {
 # INPUT
 aggregate = True
 stretch = False
-cwd = 'D:\\UQAM_INF7370\\Examples\\satimg-master\\nick_data'
-outname = 'mlp_16_8_4_trainS2_testS3_noStretch_aggregate'
+cwd = 'C:\\PATH\\TO\\FILES'
+outname =  'NAME_OF_OUTPUT'    # Example 'mlp_16_8_4_noStretch_aggregate'
 train_raster_path = os.path.join(cwd,'buildings_scene2.tif')
 train_vector_path = os.path.join(cwd,'shp_scene2')
 test_raster_path = os.path.join(cwd,'buildings_scene3.tif')
